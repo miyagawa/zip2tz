@@ -3,9 +3,11 @@ all:	US.pm
 zip2state.yaml:
 	./zip2state.pl > zip2state.yaml
 
-state2tz.yaml:
-	wget http://en.wikipedia.org/wiki/List_of_U.S._states_by_time_zone
+state2tz.yaml: List_of_U.S._states_by_time_zone
 	./state2tz.pl < List_of_U.S._states_by_time_zone > state2tz.yaml
+
+List_of_U.S._states_by_time_zone:
+	wget http://en.wikipedia.org/wiki/List_of_U.S._states_by_time_zone
 
 US.pm:	state2tz.yaml
 	./generate_module.pl state2tz.yaml > US.pm
